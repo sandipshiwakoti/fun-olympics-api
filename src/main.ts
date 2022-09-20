@@ -4,6 +4,8 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
 import { AppModule } from './app.module';
+import { config } from 'dotenv';
+config();
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -34,6 +36,6 @@ async function bootstrap() {
     prefix: '/uploads/',
   });
 
-  await app.listen(3000);
+  await app.listen(process.env.port);
 }
 bootstrap();
