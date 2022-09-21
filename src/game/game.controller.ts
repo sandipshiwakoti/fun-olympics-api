@@ -22,23 +22,14 @@ import { CreateGameDTO, UpdateGameDTO } from './game.dto';
 import { Roles } from 'src/roles.decorator';
 import { Role } from 'src/role.enum';
 import { Pagination } from 'nestjs-typeorm-paginate';
-import { Public } from 'src/auth/auth.decorator';
 
 @ApiTags('Game')
 @Controller('game')
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 
-  // @UseInterceptors(TransformInterceptor('Games found!'))
-  // @Public()
-  // @Get()
-  // getGames(): Promise<GameEntity[]> {
-  //   return this.gameService.getGames();
-  // }
-
   @UseInterceptors(TransformInterceptor('Games found!'))
   @Get()
-  @Public()
   getGames(
     @Query('search', new DefaultValuePipe('')) search: string,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,

@@ -16,14 +16,6 @@ export class GameService {
     private gameRepository: Repository<GameEntity>,
   ) {}
 
-  // public async getGames(): Promise<GameEntity[]> {
-  //   const games = await this.gameRepository.find();
-  //   if (!games || !games[0]) {
-  //     throw new HttpException('Games not found', 404);
-  //   }
-  //   return games;
-  // }
-
   async getGames(
     search: string,
     options: IPaginationOptions,
